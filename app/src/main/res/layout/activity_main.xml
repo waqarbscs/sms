@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.github.yeriomin.smsscheduler.Activity.MainActivity"
+    android:background="@drawable/inside_screen"
+    android:orientation="vertical"
+    android:weightSum="6">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:layout_weight="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton1"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/new_add"
+                android:text="New"
+                android:textAlignment="center"
+                android:paddingTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:background="#00A99D"
+                android:layout_marginRight="5dp"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton2"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/view"
+                android:text="Show"
+                android:textAlignment="center"
+                android:paddingTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:background="#FE8A59"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton3"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/history_book"
+                android:text="History"
+                android:textAlignment="center"
+                android:paddingTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:background="#FE8A59"
+                android:layout_marginRight="5dp"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton4"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/about_us"
+                android:text="About Us"
+                android:textAlignment="center"
+                android:paddingTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                android:background="#00A99D"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

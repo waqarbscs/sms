@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sms_screen">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:id="@+id/form_input_message1"
+                        android:layout_margin="5dp"
+                        android:background="@android:color/transparent"
+                        android:textColor="#000000"
+                        android:textColorHighlight="#000000"
+                        android:visibility="gone"
+                        android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <AutoCompleteTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="@string/form_hint_contact"
+                    android:id="@+id/form_input_contact"
+                    android:layout_weight=".85"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:singleLine="false" />
+                <ImageButton
+                    android:id="@+id/expandableButton1"
+                    android:layout_width="0dp"
+                    android:layout_height="43dp"
+                    android:onClick="expandableButton1"
+                    android:text=""
+                    android:src="@android:drawable/ic_input_add"
+                    android:textColor="#fff"
+                    android:layout_weight=".15"/>
+                <!--
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/expandableLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/expandableButton1"
+                    android:background="#90ba1f04"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+                    app:ael_interpolator="bounce"
+                    app:ael_orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_example"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="2">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:background="#00A99D"
+                    android:layout_weight="1"
+                    android:weightSum="4">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/form_time1"
+                        android:text="abc"
+                        android:textColor="#ffffff"
+                        android:clickable="false"
+                        android:background="@android:color/transparent"
+                        android:layout_weight="3"/>
+                    <ImageButton
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="Schedule Time"
+                        android:textColor="#ffffff"
+                        android:src="@drawable/icon_watch"
+                        android:background="#FE8A59"
+                        android:id="@+id/i1"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#00A99D"
+                    android:layout_weight="1"
+                    android:weightSum="4">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/form_date1"
+                        android:text="abc"
+                        android:textColor="#ffffff"
+                        android:clickable="false"
+                        android:background="@android:color/transparent"
+                        android:layout_weight="3"/>
+                    <ImageButton
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="Schedule Time"
+                        android:id="@+id/i2"
+                        android:textColor="#ffffff"
+                        android:src="@drawable/icon_calendar"
+                        android:background="#FE8A59"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/form_time"
+                android:layout_gravity="center_horizontal"
+                android:timePickerMode="spinner" />
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/form_date"
+                android:layout_gravity="center_horizontal"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false" />
+            -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/message"
+                android:layout_margin="10dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:hint="@string/form_hint_message"
+                    android:id="@+id/form_input_message"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:maxLength="140"
+                    android:gravity="start"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/form_button_cancel"
+                    android:id="@+id/button_cancel"
+                    android:onClick="unscheduleSms"
+                    android:visibility="gone" />
+
+                <Button
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/form_button_add"
+                    android:id="@+id/button_add"
+                    android:onClick="scheduleSms"
+                    android:enabled="false"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
