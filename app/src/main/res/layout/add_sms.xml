@@ -30,7 +30,6 @@
                         android:background="@android:color/transparent"
                         android:textColor="#000000"
                         android:textColorHighlight="#000000"
-                        android:visibility="gone"
                         android:textSize="20sp" />
             </LinearLayout>
 
@@ -167,13 +166,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/message"
-                android:layout_margin="10dp">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textCapSentences|textMultiLine"
+                    android:lines="5"
+                    android:gravity="top|left"
+                    android:maxLines="10"
                     android:hint="@string/form_hint_message"
                     android:id="@+id/form_input_message"
                     android:layout_margin="10dp"
@@ -181,9 +190,14 @@
                     android:textColor="#000000"
                     android:textColorHighlight="#000000"
                     android:textColorHint="#000000"
-                    android:maxLength="140"
-                    android:gravity="start"/>
+                    android:maxLength="140" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/countMessageLength"
+                        android:layout_gravity="right|top" />
+                </FrameLayout>
             </LinearLayout>
 
             <LinearLayout

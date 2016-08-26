@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.yeriomin.smsscheduler">
+    package="com.github.waqarbscs.onewindowsms">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -17,6 +17,7 @@
             android:theme="@style/MainTheme" />
         <activity
             android:name=".Activity.AddSmsActivity"
+            android:label="Shedule a SMS"
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.SmsSchedulerPreferenceActivity" />
 
@@ -63,15 +64,18 @@
             android:name=".Activity.MainActivity"
             android:theme="@style/MainTheme" />
         <activity
-            android:name=".Activity.New"
-            android:theme="@style/MainTheme" />
-        <activity
             android:name=".Activity.Detail"
             android:theme="@style/MainTheme" />
         <activity
             android:name=".Activity.Delete"
             android:theme="@style/MainTheme" />
-        <activity android:name=".Activity.About"
+        <activity
+            android:name=".Activity.About"
+            android:theme="@style/MainTheme" />
+        <activity
+            android:name=".Activity.DeleteCardView"
+            android:theme="@style/MainTheme" />
+        <activity android:name=".Activity.DetailCardView"
             android:theme="@style/MainTheme"></activity>
     </application>
 

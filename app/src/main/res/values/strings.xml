@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">SMS Scheduler</string>
+    <string name="app_name" translatable="false">OneWindow SMS</string>
     <string name="contact_format" translatable="false">%1$s <![CDATA[<]]>%2$s<![CDATA[>]]></string>
     <string name="form_hint_contact">To</string>
     <string name="form_hint_message">Message</string>
@@ -8,7 +8,7 @@
     <string name="form_button_cancel">Delete</string>
     <string name="form_button_delete">Delete</string>
     <string name="form_validation_datetime">Please choose future date</string>
-    <string name="list_button_add">Schedule a message</string>
+    <string name="list_button_add">SMS Schedule List</string>
     <string name="list_sms_info_template">%1$s  at %3$s</string>
     <string name="list_status_pending">Will send</string>
     <string name="list_status_failed">Failed</string>
