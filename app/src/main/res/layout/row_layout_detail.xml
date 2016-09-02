@@ -45,7 +45,7 @@
 
             <ImageButton
                 android:id="@+id/deletButton"
-                android:background="@drawable/launcher"
+                android:background="@drawable/delete"
                 android:layout_width="24dp"
                 android:layout_height="24dp" />
         </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content">
             <ImageButton
                 android:id="@+id/editButton"
-                android:background="@android:drawable/ic_menu_close_clear_cancel"
+                android:background="@drawable/edit"
                 android:layout_width="24dp"
                 android:layout_height="24dp" />
         </LinearLayout>

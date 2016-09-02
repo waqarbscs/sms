@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sms_screen">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/sms_screen"
+    tools:context="com.apps.OneWindowSol.onewindowsms.Activity.AddSmsActivity">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <android.support.v7.widget.RecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                />
+                <!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -32,23 +43,32 @@
                         android:textColorHighlight="#000000"
                         android:textSize="20sp" />
             </LinearLayout>
-
+            -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:weightSum="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
                 <AutoCompleteTextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="43dp"
                     android:inputType="textPersonName"
                     android:hint="@string/form_hint_contact"
                     android:id="@+id/form_input_contact"
                     android:layout_weight=".85"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000"
+                    android:textColorHighlight="@android:color/darker_gray"
+                    android:textColorHint="@android:color/darker_gray"
                     android:textColor="#000000"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:background="@android:color/transparent"/>
                 <ImageButton
                     android:id="@+id/expandableButton1"
                     android:layout_width="0dp"
@@ -58,6 +78,7 @@
                     android:src="@android:drawable/ic_input_add"
                     android:textColor="#fff"
                     android:layout_weight=".15"/>
+
                 <!--
                 <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                     android:id="@+id/expandableLayout1"
@@ -79,7 +100,12 @@
                 </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
                 -->
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,6 +189,20 @@
                 android:datePickerMode="spinner"
                 android:calendarViewShown="false" />
             -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:id="@+id/spinner"
+                    android:background="@drawable/spinner"
+                    android:textSize="40sp"
+                    android:dropDownVerticalOffset="-48dp">
+                </Spinner>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,16 +228,16 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/transparent"
                     android:textColor="#000000"
-                    android:textColorHighlight="#000000"
-                    android:textColorHint="#000000"
-                    android:maxLength="140" />
-
+                    android:textColorHighlight="@android:color/darker_gray"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:maxLength="154" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/countMessageLength"
                         android:layout_gravity="right|top" />
                 </FrameLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -222,7 +262,9 @@
                     android:text="@string/form_button_add"
                     android:id="@+id/button_add"
                     android:onClick="scheduleSms"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    android:textColor="#ffffff"
+                    android:background="#FE8A59"/>
 
 
             </LinearLayout>
