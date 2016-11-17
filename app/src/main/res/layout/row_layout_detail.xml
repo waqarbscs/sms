@@ -39,13 +39,20 @@
             android:layout_marginTop="10dp"
             android:layout_margin="5dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/deletButton"
-                android:background="@drawable/delete"
+                android:background="@drawable/delete1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="10dp"/>
+            <ImageButton
+                android:id="@+id/editButton"
+                android:background="@drawable/edit1"
                 android:layout_width="24dp"
                 android:layout_height="24dp" />
         </LinearLayout>
@@ -56,11 +63,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/editButton"
-                android:background="@drawable/edit"
-                android:layout_width="24dp"
-                android:layout_height="24dp" />
+
         </LinearLayout>
 
 

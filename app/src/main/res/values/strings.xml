@@ -29,10 +29,10 @@
     <string name="successfully_scheduled">Отправка SMS запланирована</string>
     <string name="successfully_unscheduled">Отправка SMS отменена</string>
     <string-array name="spinner_array" translatable="false">
-    <item>Once</item>
-    <item>Daily</item>
-    <item>Weekly</item>
-    <item>Monthly</item>
+        <item>Once</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
     </string-array>
     <string name="spinner_array" translatable="false">Once</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.apps.OneWindowSol.onewindowsms.Activity.MainActivity"
+    tools:context="com.apps.OneWindowSol.onewindowsms2.Activity.MainActivity"
     android:orientation="vertical"
     android:weightSum="6">
     <LinearLayout
@@ -17,7 +17,7 @@
         <View
             android:layout_width="240dp"
             android:layout_height="1dp"
-            android:background="#00A99D"
+            android:background="#449def"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         <View
             android:layout_width="180dp"
             android:layout_height="1dp"
-            android:background="#00A99D"
+            android:background="#449def"
             android:layout_gravity="center"/>
 
     </LinearLayout>
@@ -39,6 +39,7 @@
         android:layout_weight="1.5"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="12dp">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -71,8 +72,9 @@
                 android:textAlignment="center"
                 android:paddingTop="20dp"
                 android:textAppearance="?android:attr/textAppearanceLargeInverse"
-                android:background="#00A99D"
-                android:layout_marginRight="5dp"/>
+                android:background="@drawable/btn_blue"
+                android:layout_marginRight="5dp"
+                android:enabled="false"/>
 
             <Button
                 android:layout_width="0dp"
@@ -84,7 +86,7 @@
                 android:textAlignment="center"
                 android:paddingTop="20dp"
                 android:textAppearance="?android:attr/textAppearanceLargeInverse"
-                android:background="#FE8A59"
+                android:background="@drawable/btn_yellow"
                 android:layout_marginLeft="5dp"/>
         </LinearLayout>
         <LinearLayout
@@ -104,7 +106,7 @@
                 android:textAlignment="center"
                 android:paddingTop="20dp"
                 android:textAppearance="?android:attr/textAppearanceLargeInverse"
-                android:background="#FE8A59"
+                android:background="@drawable/btn_yellow"
                 android:layout_marginRight="5dp"/>
 
             <Button
@@ -117,7 +119,7 @@
                 android:textAlignment="center"
                 android:paddingTop="20dp"
                 android:textAppearance="?android:attr/textAppearanceLargeInverse"
-                android:background="#00A99D"
+                android:background="@drawable/btn_blue"
                 android:layout_marginLeft="5dp"/>
         </LinearLayout>
     </LinearLayout>

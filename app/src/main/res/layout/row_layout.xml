@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="4dp">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -18,9 +18,9 @@
             android:fadingEdge="horizontal"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
-            android:singleLine="true"
+            android:maxLines="1"
             android:text="test"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -32,7 +32,27 @@
             android:text="98343"
             android:textColor="#666666"
             android:textSize="13dip" />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/deletButton"
+                android:background="@drawable/delete1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="10dp"/>
+            <ImageButton
+                android:id="@+id/editButton"
+                android:background="@drawable/edit1"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+        </LinearLayout>
 
 
 

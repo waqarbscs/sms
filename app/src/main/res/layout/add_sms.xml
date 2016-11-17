@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/sms_screen"
-    tools:context="com.apps.OneWindowSol.onewindowsms.Activity.AddSmsActivity">
-    <ScrollView
+    tools:context="com.apps.OneWindowSol.onewindowsms2.Activity.AddSmsActivity">
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -18,13 +18,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/recyclerview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.RecyclerView
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/recyclerview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:layout_margin="16dp"
+                        android:clipToPadding="false" />
+                </RelativeLayout>
+
+
+
                 <!--
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -63,21 +70,30 @@
                     android:inputType="textPersonName"
                     android:hint="@string/form_hint_contact"
                     android:id="@+id/form_input_contact"
-                    android:layout_weight=".85"
+                    android:layout_weight=".76"
                     android:textColorHighlight="@android:color/darker_gray"
                     android:textColorHint="@android:color/darker_gray"
                     android:textColor="#000000"
-                    android:singleLine="false"
+                    android:maxLines="1"
                     android:background="@android:color/transparent"/>
                 <ImageButton
                     android:id="@+id/expandableButton1"
                     android:layout_width="0dp"
                     android:layout_height="43dp"
                     android:onClick="expandableButton1"
-                    android:text=""
-                    android:src="@android:drawable/ic_input_add"
+                    android:src="@drawable/ic_input_add"
+                    android:background="@android:color/transparent"
                     android:textColor="#fff"
-                    android:layout_weight=".15"/>
+                    android:layout_weight=".12"/>
+                <ImageButton
+                    android:id="@+id/googleImport"
+                    android:layout_width="0dp"
+                    android:layout_height="43dp"
+                    android:onClick="expandableButton1"
+                    android:src="@drawable/ic_input_down"
+                    android:background="@android:color/transparent"
+                    android:textColor="#fff"
+                    android:layout_weight=".12"/>
 
                 <!--
                 <com.github.aakira.expandablelayout.ExpandableRelativeLayout
@@ -230,7 +246,9 @@
                     android:textColor="#000000"
                     android:textColorHighlight="@android:color/darker_gray"
                     android:textColorHint="@android:color/darker_gray"
-                    android:maxLength="154" />
+                    android:maxLength="450"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,7 +280,7 @@
                     android:text="@string/form_button_add"
                     android:id="@+id/button_add"
                     android:onClick="scheduleSms"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:textColor="#ffffff"
                     android:background="#FE8A59"/>
 
@@ -272,5 +290,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

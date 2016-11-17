@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.apps.OneWindowSol.onewindowsms.Activity.ContactBook">
+    tools:context="com.apps.OneWindowSol.onewindowsms2.Activity.ContactBook">
 
     <FrameLayout
         android:layout_width="match_parent"

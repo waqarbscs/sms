@@ -5,10 +5,10 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "com.apps.OneWindowSol.onewindowsms"
+        applicationId "com.apps.OneWindowSol.onewindowsms2"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
+        versionCode 2
         versionName "1"
     }
 
@@ -32,4 +32,17 @@ dependencies {
     compile 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
     compile 'com.android.support:recyclerview-v7:24.1.0'
     compile 'com.android.support:cardview-v7:24.1.1'
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'pub.devrel:easypermissions:0.1.5'
+    compile('com.google.api-client:google-api-client-android:1.22.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile('com.google.apis:google-api-services-gmail:v1-rev48-1.22.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    compile files('libs/gdata-client-1.0.jar')
+    compile files('libs/gdata-contacts-3.0.jar')
+    compile files('libs/gdata-core-1.0.jar')
+    compile 'com.google.apis:google-api-services-people:v1-rev4-1.22.0'
 }
