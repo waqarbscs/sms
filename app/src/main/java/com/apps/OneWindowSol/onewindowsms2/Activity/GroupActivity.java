@@ -1,8 +1,11 @@
 package com.apps.OneWindowSol.onewindowsms2.Activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,29 +17,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.apps.OneWindowSol.onewindowsms2.DbHelper;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+
 import com.apps.OneWindowSol.onewindowsms2.Group.AdapterGroup;
 import com.apps.OneWindowSol.onewindowsms2.Group.Item;
 import com.apps.OneWindowSol.onewindowsms2.R;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GroupActivity extends AppCompatActivity {
 
     private static final String GROUP_TYPE="com.onewindowsol.contactsgroup";
-    private EditText editCreateGroup;
     private FloatingActionButton btnCreateGroup;
 
     private RecyclerView recycleGroup;
@@ -44,6 +45,11 @@ public class GroupActivity extends AppCompatActivity {
     LinearLayoutManager mLayoutManager;
 
     private LinkedHashMap<Item,ArrayList<Item>> groupList;
+    List<Item> groups;
+    List<ArrayList<Item>> groupContacts;
+    int GroupId=0;
+
+    ProgressDialog progressDialog;
 
     private final static int REQUEST_CODE = 3;
 
@@ -52,15 +58,22 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         //editCreateGroup=(EditText)findViewById(R.id.editCreateGroup);
-        btnCreateGroup=(FloatingActionButton) findViewById(R.id.CreateGroup);
+        btnCreateGroup=(FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         //groupList=new ArrayList<>();
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Adding contacts in group");
+        progressDialog.setCancelable(false);
+
+
         groupList = new LinkedHashMap<Item,ArrayList<Item>>();
 
         groupList=initContactList();
+        groups=new ArrayList<>(groupList.keySet());
+        groupContacts=new ArrayList<>(groupList.values());
 
         recycleGroup=(RecyclerView)findViewById(R.id.recycleGroup);
-        adapterGroup=new AdapterGroup(groupList,getApplication());
+        adapterGroup=new AdapterGroup(groupList,groups,getApplication());
         mLayoutManager = new LinearLayoutManager(this);
 
         recycleGroup.setAdapter(adapterGroup);
@@ -78,24 +91,68 @@ public class GroupActivity extends AppCompatActivity {
                     groupList.add(fetchGroups().get(i).name);
                 }
                 */
-                Intent i=new Intent(GroupActivity.this,ContactBook.class);
-                startActivityForResult(i,REQUEST_CODE);
+                showDialog1();
                 //Toast.makeText(MainActivity.this, ""+groupList.get(0).toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         recycleGroup.addOnItemTouchListener(
-                new RecyclerItemClickListener(getApplication(), new RecyclerItemClickListener.OnItemClickListener() {
+                new RecyclerItemClickListener(getApplication(),recycleGroup, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
 
                         Intent i=new Intent(GroupActivity.this,ContactBook.class);
+                        i.putExtra("Activ","ab");
                         startActivityForResult(i,REQUEST_CODE);
+                        GroupId= Integer.parseInt(groups.get(position).id);
 
                         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                        //Intent i=new Intent(GroupActivity.this,GroupContacts.class);
+                        //i.putStringArrayListExtra("contactDetails",groupContacts.get(position));
+                        //startActivity(i);
                     }
                 })
         );
 
+
+    }
+    public void showDialog1(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GroupActivity.this);
+        alertDialog.setTitle("Create Group");
+
+
+        final EditText input = new EditText(GroupActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+        //alertDialog.setIcon(R.drawable.key);
+
+        alertDialog.setPositiveButton("Add",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //insertType(type,input.getText().toString());
+                        if(input.getText().length()>0) {
+                            createGroup(input.getText().toString());
+                        }else {
+                            Toast.makeText(GroupActivity.this, "Please submit a name", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        alertDialog.setNegativeButton("Discard",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        alertDialog.show();
 
     }
     @Override
@@ -104,18 +161,59 @@ public class GroupActivity extends AppCompatActivity {
 
             switch (resultCode) {
                 case ContactBook.RESULT_SCHEDULED:
-                    SharedPreferences contactP = getSharedPreferences("contactP", 0);
-                    int size1 = contactP.getInt("size", 0);
-                    for (int j = 0; j < size1; j++) {
-                        String s1 = contactP.getString("val" + j, "");
-                        int s2=getRawContactId(Integer.parseInt(s1));
-                        //addToGroup(s2,1);
-                        }
-                    break;
+                    progressDialog.show();
+                    Thread backgroundThread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            SharedPreferences contactP = getSharedPreferences("contactP", 0);
+                            int size1 = contactP.getInt("size", 0);
+                            for (int j = 0; j < size1; j++) {
+                                String s1 = contactP.getString("val" + j, "");
+                                long s2 = getRawContactId(Integer.parseInt(s1));
+                                //deleteContactFromGroup(s2,GroupId);
+                                addToGroup(s2, GroupId);
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressDialog.dismiss();
+                                    //RestartActivity();
+                                    recreate();
 
+                                }
+                            });
+                        }
+                     });
+                    backgroundThread.start();
+
+
+                    break;
             }
         }
+    }
+    @Override
+    public void recreate()
+    {
+        super.recreate();
 
+    }
+    private void deleteContactFromGroup(long contactId, long groupId)
+    {
+        ContentResolver cr = getContentResolver();
+        String where = ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID + "=" + groupId + " AND "
+                + ContactsContract.CommonDataKinds.GroupMembership.RAW_CONTACT_ID + "=?" + " AND "
+                + ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE + "='"
+                + ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE + "'";
+
+
+            try
+            {
+                cr.delete(ContactsContract.Data.CONTENT_URI, where,
+                        new String[] { String.valueOf(contactId) });
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
 
     }
     public int getRawContactId(int contactId) {
@@ -125,6 +223,7 @@ public class GroupActivity extends AppCompatActivity {
         Cursor c = getContentResolver().query(ContactsContract.RawContacts.CONTENT_URI, projection, selection, selectionArgs, null);
         c.moveToNext();
         int rawContactId = c.getInt(c.getColumnIndex(ContactsContract.RawContacts._ID));
+        c.close();
         return rawContactId;
     }
 
@@ -132,6 +231,7 @@ public class GroupActivity extends AppCompatActivity {
 
         //remove if exists
         //this.removeFromGroup(personId, groupId);
+        deleteContactFromGroup(personId,GroupId);
 
         ContentValues values = new ContentValues();
         values.put(ContactsContract.CommonDataKinds.GroupMembership.RAW_CONTACT_ID,
@@ -139,38 +239,54 @@ public class GroupActivity extends AppCompatActivity {
         values.put(
                 ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID,
                 groupId);
-        values
-                .put(
-                        ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE,
-                        ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE);
+        values.put(
+                ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE,
+                ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE);
 
-         getContentResolver().insert(
+        getContentResolver().insert(
                 ContactsContract.Data.CONTENT_URI, values);
 
     }
-    private void createGroup() {
 
+
+
+    private void createGroup(String Name) {
+        boolean exist=false;
         ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
 
         ops.add(ContentProviderOperation
                 .newInsert(ContactsContract.Groups.CONTENT_URI)
                 .withValue(
                         ContactsContract.Groups.TITLE,
-                        "")
+                        Name)
                 .withValue(
                         ContactsContract.Groups.ACCOUNT_TYPE,
                         GROUP_TYPE)
                 .withValue(
                         ContactsContract.Groups.ACCOUNT_NAME,
-                        "")
+                       "Phone")
                 .build());
         try {
-
-            getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-
+            for(Item item : groups){
+                if(item.name.toLowerCase().equals(Name.toLowerCase())){
+                    exist=true;
+                }
+            }
+            if(!exist) {
+                getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+                RestartActivity();
+            }
+            else {
+                Toast.makeText(this, "Group having title "+Name+" already exist", Toast.LENGTH_SHORT).show();
+            }
         } catch (Exception e) {
             Log.e("Error", e.toString());
         }
+    }
+    public void RestartActivity(){
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
     private ArrayList<Item> fetchGroups(){
         ArrayList<Item> groupList = new ArrayList<Item>();
@@ -199,7 +315,7 @@ public class GroupActivity extends AppCompatActivity {
                     }
                 }
             }else{
-                groupTitle.add(groupName);
+                groupTitle.add(GROUP_TYPE);
                 item.name = groupName;
                 groupList.add(item);
             }
@@ -226,7 +342,7 @@ public class GroupActivity extends AppCompatActivity {
                 String groupId = ids[i];
                 groupMembers.addAll(fetchGroupMembers(groupId));
             }
-            //item.name = item.name+" ("+groupMembers.size()+")";
+            item.name = item.name+" ("+groupMembers.size()+")";
             groupList.put(item,groupMembers);
         }
         return groupList;

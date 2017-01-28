@@ -18,7 +18,7 @@
             android:fadingEdge="horizontal"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
-            android:singleLine="true"
+            android:maxLines="1"
             android:text="test"
             android:textSize="30sp"
             android:textStyle="bold" />

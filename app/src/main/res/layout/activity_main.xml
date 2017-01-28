@@ -74,7 +74,7 @@
                 android:textAppearance="?android:attr/textAppearanceLargeInverse"
                 android:background="@drawable/btn_blue"
                 android:layout_marginRight="5dp"
-                android:enabled="false"/>
+                />
 
             <Button
                 android:layout_width="0dp"
